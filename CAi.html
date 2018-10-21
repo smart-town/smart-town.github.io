@@ -22,11 +22,15 @@
         <div id="container" ondragenter="dragenter(event)" ondragover="dragover(event)" ondrop="dragdrop(event)">
             
         </div>
-        <div id="myheart" draggable="true" ondragstart="dragstart(event)">
+        <div id="myheart" draggable="true" ondragstart="dragstart(event)" onclick="test()">
             爱你
         </div>
 
         <script>
+            function test(){
+                alert("\"吧唧\"") ;
+            }
+
             function dragstart(ev) {
                 console.log("DRAG START") ;
                 ev.dataTransfer.setData("text/html",ev.target.id) ;
