@@ -12,6 +12,9 @@
 			/* background: lightblue; */
 			text-align: center;
 		}
+		.myButton {
+			border-radius: 15px;
+		}
 	</style>
 </head>
 <body>
@@ -19,10 +22,16 @@
 		<h1>Small Town</h1>
 		<detail>
 			<summary>O_O</summary>
-			我准备用原生的三件套或者包含jQuery做一个站点；再用框架做一个！到时候可以自由切换的那种！没错！emmmmmm自己写似乎还需要一些设计知识。
-			I must become a little lhsr
 		</detail>
 	</header>
+	<div class="myButton">爱你呀</div>
+
+	<script>
+		var btn = document.querySelector(".myButton") ;
+		btn.click(function(){
+			alert("❤❤❤❤❤");
+		})
+	</script>
 </body>
 
 </html>
