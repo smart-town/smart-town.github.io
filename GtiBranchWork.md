@@ -45,3 +45,13 @@
 关于避免每次输入密码，如果正在使用HTTPS URL推送，Git服务器会询问用户名和密码，默认情况下它会在终端提示服务器是否允许你进行推送。如果不想再每一次推送时都输入用户名和密码，你可以设置一个`credential cache`，最简单的方式就是将其保存在内存中几分钟。可以简单地运行`git config --global credential.helper cache`来设置它。
 
 下一次其他协作者从服务器上抓起数据时，它们会在本地生成一个远程分支 origin/serverfix，指向服务器的serverfix分支的引用。要特别注意的一点是当抓取到新的远程跟踪分支时，本地不会自动生成一份可编辑的副本，换句话说，这种情况下，不会有一个新的serverfix分支，只有一个不可以修改的origin/serverfix指针。可以运行git merge origin/serverfix将这些工作合并到当前所在的分支，如果想要在自己的serverfix分支上工作，可以将其建立在远程跟踪分支之上。`git checkout -b serverfix origin/serverfix`。这就会给你一个用于工作的本地分支，并且起点位于origin/serverfix.
+
+### 跟踪分支
+
+从一个远程跟踪分支检出一个本地分支会自动创建出一个叫做”跟踪分支“，有时也叫做上游分支。跟踪分支是与远程分支有直接关系的本地分支。如果在一个跟踪分支上输入`git pull`，Git能狗自动识别去哪个服务器上抓取、合并到哪个分支。
+
+当克隆一个仓库时，它通常会自动地创建一个跟踪`origin/master`的`master`分支，然而，如果你愿意的话可以设置其他的跟踪分支——其他远程仓库上的跟踪分支，或者不跟踪`master`分支。最简单的就是：`git checkout -b branch remotename/branch`，这是一个十分常用的操作所以Git提供了`--track`快捷方式：`git checkout --track origin/serverfix`。如果想要将本地分支与远程分支设置为不同名字，可以轻松增加一个不同名字的本地分支的上一个命令：`git checkout -b sf origin/serverfix`。现在本地分支`sf`会自动从`origin/serverfix`拉取。
+
+设置已有的本地分支跟踪一个刚刚拉取下来的远程分支，或者想要修改正在追踪的上游分支，可以在任何使用使用`-u`或者`--set-upstream-to`选项，运行`git branch`显式设置`git branch -u origin/serverfix`。
+
+如果想要查看设置的所有跟踪分支。可以使用`git branch -vv`。这会将所有的本地分支列出来并且包含更多的信息，如每一个分支正咋耿总那个远程分支，与本地分支是否领先、落后或是都有。如果领先2则说明本地有两个提交还没有推送到服务器上。

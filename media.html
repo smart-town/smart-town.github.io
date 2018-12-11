@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        @edia(color){
+            .hascolor{
+                background-color: lightblue;
+                border-radius: 25px;
+                width: 50px;
+                height: 50px;
+                border: 1px solid lightblue;
+            }
+        }
+        @media(min-aspect-ratio: 1/1){
+            .aspectRatio{
+               width: 60px;
+               height: 60px;
+               border: 1px solid black; 
+            }
+        }
+        @media(min-height: 300){
+            .heightTest {
+                background: lightcyan ;
+                width: 50%;
+                height: 30px;
+                font-size: 20px;
+                line-height: 30px;
+                margin: 0 auto;
+            }
+        }
+        @media(min-monochrome: 1){
+            .monoTest{
+                width: 50%;
+                height: 50px;
+                margin: 0 auto;
+                box-shadow: 5px 5px 10px rgba(0,0,0,0.4);
+                border: dashed black 1px;
+            }
+        }
+
+        @media(orientation: portrait){
+            .orientationTest {
+                width: 40px;
+                height: 40px;
+                background-color: lightblue ;
+
+            }
+        }
+        @media(orientation: landscape){
+            .orientationTest {
+                width: 40px;
+                height: 40px;
+                background-color: blue;
+                border-radius: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hascolor">O-O</div>
+    <div class="aspectRatio">aspect-ration:1/1</div>
+    <div class="heightTest">min-height&lt;500</div>
+    <div class="monoTest">monochrome--test--黑白设备</div>
+    <div class="orientationTest">orientation</div>
+</body>
+</html>
