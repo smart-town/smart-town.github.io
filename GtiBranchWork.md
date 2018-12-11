@@ -36,4 +36,12 @@
 
 如果你在本地的master分支上做了一些工作，然而在同一时间，其他人推送提交到git.ourcompany.com并且更新了它的master分支，那么你的提交历史将向不同的方向前进。也许，只要你不与origin服务器链接，你的origin/master指针就不会移动。如果要同步你的工作，运行`git fetch origin`命令，这个命令查找"origin"是哪一个服务器，从中抓取本地没有的数据，并且更新本地数据库，移动origin/master指针指向新的、更新后的位置。
 
-为了演示有多个远程仓库和远程分支的情况，我们假定你有另一个内部Git服务器，仅用于你的spring小组开发工作。这个服务器位于git.team1.ourcompany.com。你可以运行git remote add 命令添加有一个新的远程仓库引用到当前的项目。
+为了演示有多个远程仓库和远程分支的情况，我们假定你有另一个内部Git服务器，仅用于你的spring小组开发工作。这个服务器位于git.team1.ourcompany.com。你可以运行git remote add 命令添加有一个新的远程仓库引用到当前的项目。将这个远程仓库命名为teamone，将其作为整个URL的缩写。现在可以运行`git fetch teamone`来抓取远程仓库teamone有而本地没有的数据。因为那台服务器上现有的数据是origin服务器上的一个子集所以Git并不会抓取数据而是会设置远程跟踪分支teamone/master指向teamone的master分支。
+
+### 推送
+
+当你想要公开分享一个分支的时候，需要将其推送到有写入权限的远程仓库上。本地的分支并不会自动与远程仓库同步，你必须显式地推送想要分享的分支。这样，你就可以把不愿意分享的内容放到私人分支上，而将需要和别人协作的内容推送到公开分支。如果希望和别人一起在名为serverfix的分支上工作，可以像推送第一个分支那样推送它。运行：`git push (remote)(branch)`。如：`git push origin serverfix`。这里有些工作被简化了，Git自动将serverfix分支名字展开为`refs/heads/serverfix:refs/heads/serverfix`，这意味着推送本地的serverfix分支来更新远程仓库上的serverfix分支。你也可以运行`git push origin serverfix:serverfix`它会做同样的事情。**可以通过这种格式来推送本地分支到一个命名不相同的远程分支。**如果并不想让远程仓库上的分支叫做 serverfix，可以运行`git push origin serverfix:awesomebranch`来将本地的serverfix分支推送到远程仓库上的awesomebranch分支。
+
+关于避免每次输入密码，如果正在使用HTTPS URL推送，Git服务器会询问用户名和密码，默认情况下它会在终端提示服务器是否允许你进行推送。如果不想再每一次推送时都输入用户名和密码，你可以设置一个`credential cache`，最简单的方式就是将其保存在内存中几分钟。可以简单地运行`git config --global credential.helper cache`来设置它。
+
+下一次其他协作者从服务器上抓起数据时，它们会在本地生成一个远程分支 origin/serverfix，指向服务器的serverfix分支的引用。要特别注意的一点是当抓取到新的远程跟踪分支时，本地不会自动生成一份可编辑的副本，换句话说，这种情况下，不会有一个新的serverfix分支，只有一个不可以修改的origin/serverfix指针。可以运行git merge origin/serverfix将这些工作合并到当前所在的分支，如果想要在自己的serverfix分支上工作，可以将其建立在远程跟踪分支之上。`git checkout -b serverfix origin/serverfix`。这就会给你一个用于工作的本地分支，并且起点位于origin/serverfix.
