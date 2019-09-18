@@ -1,0 +1,22 @@
+{
+  "name": "smart-town.github.io",
+  "version": "1.0.0",
+  "description": "just test :smile:",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smart-town/smart-town.github.io.git"
+  },
+  "author": "smalltown",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/smart-town/smart-town.github.io/issues"
+  },
+  "homepage": "https://github.com/smart-town/smart-town.github.io#readme"
+}
