@@ -17,3 +17,7 @@ jobs:
     my_second_job:
         name: Second Job
         needs: my_first_job
+        steps:
+        -   name: Print Second Info
+            run:
+                echo "Hello, I am hhg"
