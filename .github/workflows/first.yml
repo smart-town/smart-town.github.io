@@ -1,0 +1,19 @@
+name: SmallTown Actions Test
+on:
+    push:
+        branches:
+            - master
+jobs:
+    my_first_job:
+        name: First Job
+        runs-on: ubuntu-18.04
+        steps:
+        -   name: Print A Greeting
+            env:
+                MY_VAR: Hello!This is GitHub Actions!
+            run:
+                echo $MY_VAR
+        
+    my_second_job:
+        name: Second Job
+        needs: my_first_job
