@@ -22,3 +22,6 @@ doc/**/*.pdf
 node_modules/
 .cache/
 .temp/
+
+
+dist/
