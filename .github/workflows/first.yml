@@ -13,12 +13,3 @@ jobs:
                 MY_VAR: Hello!This is GitHub Actions!
             run:
                 echo $MY_VAR
-        
-    my_second_job:
-        name: Second Job
-        needs: my_first_job
-        runs-on: ubuntu-18.04
-        steps:
-        -   name: Print Second Info
-            run:
-                echo "Hello, I am hhg"

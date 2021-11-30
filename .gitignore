@@ -17,3 +17,8 @@ doc/*.txt
 doc/**/*.pdf
 
 # github 有一个十分详细的针对数十种项目以及语言的 .gitignore 列表。可以在 https://github.com/github/gitignore 中找到
+
+
+node_modules/
+.cache/
+.temp/
