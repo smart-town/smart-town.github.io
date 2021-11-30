@@ -2,7 +2,8 @@ module.exports = {
     lang: "zh-Hans",
     title: "小城",
     description: "notes",
-    public: "public",
+    public: "./public",
+    dest: "./dist",
     head: [
         ['link', {rel: 'icon', href: '/images/favicon.ico'}],
     ],
