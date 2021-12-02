@@ -2,6 +2,23 @@ const path = require("path")
 const fs = require("fs")
 const IGNORE_DIR_DEFAULT = [".github", ".vuepress", "dist", "node_modules", "public", ".git"]
 
+/***
+ * 
+ * 规则：对于
+ * - A/
+ *  - README.md
+ *  - B/
+ *  ---- README.md
+ *  - C/
+ *  ---- README.md
+ *  ---- Others.md
+ *  ---- D/
+ *     ----- README.md
+ * 
+ * 以 A 作为根目录，则分别生成 B/, C/ 三个导航链接 navbar
+ * B 则直接生成文件链接指向 /B/README.md，同时生成对应的分组 sidebar: B 目录下的所有文件
+ * C 则生成 navbar 列表，包含 REAMDE.md 指向 /C/README.md 和 /C/D 目录，同时也生成对应的两个分组 sidebar: /C/ 下所有文件和 /C/D 下的所有文件 
+ */
 const getSubDir = (dir) => {
     let dirList = fs.readdirSync(dir)
     return dirList.filter(v => fs.lstatSync(path.resolve(dir, v)).isDirectory())
@@ -115,11 +132,11 @@ structure: \n${JSON.stringify(this.structure, null, 4)}
     }
 }
 
-// if (process.env.TEST) {
-//     let test = new AutoNavSide()
-//     console.log(test.genNavbarGroup())
-//     console.log(test.genSidebarGroup())
-// }
+if (process.env.TEST) {
+    let test = new AutoNavSide()
+    console.log(test.genNavbarGroup())
+    console.log(test.genSidebarGroup())
+}
 module.exports = {
     AutoNavSide,
 }
