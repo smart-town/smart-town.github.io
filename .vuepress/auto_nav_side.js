@@ -11,7 +11,7 @@ const getSubItems = (dir) => {
     return dirList
 }
 const sortDirs = (dirArr) => {
-    console.log("prerare sort:", dirArr)
+    // console.log("prepare sort:", dirArr)
     dirArr.sort()
     let firstIndex = dirArr.indexOf("README.md")
     
@@ -19,8 +19,12 @@ const sortDirs = (dirArr) => {
         let indexEle = dirArr.splice(firstIndex, firstIndex+1)
         dirArr.unshift(indexEle[0])
     }
-    console.log("sort:", dirArr)
+    // console.log("sort:", dirArr)
     return dirArr
+}
+const getSubFiles = (dir) => {
+    let fileList = fs.readdirSync(dir)
+    return fileList.filter(v => fs.lstatSync(path.resolve(dir, v)).isFile())
 }
 
 class AutoNavSide {
@@ -28,7 +32,7 @@ class AutoNavSide {
         this.root = root ? root : process.cwd()
         this.ignoreDirList = ignoreDirList
         this.structure = this.getStructure()
-
+        this.fileInfo = this.getFileInfo()
         console.log(`
 ----------------------------------------------------------
 root: ${this.root}
@@ -49,6 +53,20 @@ structure: \n${JSON.stringify(this.structure, null, 4)}
         }
         return structure
     }
+    getFileInfo() {
+        let fileInfo = {}
+        for (let dir of Object.keys(this.structure)) {
+            let temp = path.resolve(this.root, dir)
+            // console.log(`prepare get subfile of dir ${temp}`)
+            let subFileList = getSubFiles(temp)
+            if (subFileList.length > 0) {
+                fileInfo[dir] = subFileList
+            } else {
+                continue;
+            }
+        }
+        return fileInfo
+    }
     
     genNavbarGroup() {
         let result = []
@@ -56,10 +74,15 @@ structure: \n${JSON.stringify(this.structure, null, 4)}
         for (let dir of Object.keys(this.structure)) {
             let subDir = this.structure[dir]
             if (subDir.length > 0) {
+                let  children = subDir.map(sub => `/${dir}/${sub}/`) 
+                if (this.fileInfo[dir] && this.fileInfo[dir].length) {
+                    children.unshift(`/${dir}/README.md`)
+                }
                 result.push({
                     text: dir,
-                    children: subDir.map(sub => `/${dir}/${sub}/`) 
+                    children
                 })
+                
             } else {
                 result.push({
                     text: dir,
@@ -80,6 +103,9 @@ structure: \n${JSON.stringify(this.structure, null, 4)}
                     let temp = path.resolve(this.root, dir, sub)
                     result[`/${dir}/${sub}/`] = sortDirs(getSubItems(temp)).map(v => `/${dir}/${sub}/${v}`)
                 }
+                if (this.fileInfo[dir] && this.fileInfo[dir].length) {
+                    result[`/${dir}/`] = sortDirs(this.fileInfo[dir]).map(v => `/${dir}/${v}`)
+                }
             } else {
                 let temp = path.resolve(this.root, dir)
                 result[`/${dir}/`] = sortDirs(getSubItems(temp)).map(v => `/${dir}/${v}`)
@@ -89,9 +115,11 @@ structure: \n${JSON.stringify(this.structure, null, 4)}
     }
 }
 
-let test = new AutoNavSide()
-console.log(test.genNavbarGroup())
-console.log(test.genSidebarGroup())
+// if (process.env.TEST) {
+//     let test = new AutoNavSide()
+//     console.log(test.genNavbarGroup())
+//     console.log(test.genSidebarGroup())
+// }
 module.exports = {
     AutoNavSide,
 }
