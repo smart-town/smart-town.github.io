@@ -50,13 +50,13 @@ class AutoNavSide {
         this.ignoreDirList = ignoreDirList
         this.structure = this.getStructure()
         this.fileInfo = this.getFileInfo()
-        console.log(`
-----------------------------------------------------------
-root: ${this.root}
-ignore: ${this.ignoreDirList}
-structure: \n${JSON.stringify(this.structure, null, 4)}
-----------------------------------------------------------
-        `)
+//         console.log(`
+// ----------------------------------------------------------
+// root: ${this.root}
+// ignore: ${this.ignoreDirList}
+// structure: \n${JSON.stringify(this.structure, null, 4)}
+// ----------------------------------------------------------
+//         `)
     }
     getStructure() {
         this.autoGroupDir = fs.readdirSync(this.root).filter(dir => this.ignoreDirList.indexOf(dir) == -1 )
@@ -93,7 +93,7 @@ structure: \n${JSON.stringify(this.structure, null, 4)}
             if (subDir.length > 0) {
                 let  children = subDir.map(sub => `/${dir}/${sub}/`) 
                 if (this.fileInfo[dir] && this.fileInfo[dir].length) {
-                    children.unshift(`/${dir}/README.md`)
+                    children.unshift(`/${dir}/`)
                 }
                 result.push({
                     text: dir,
@@ -103,7 +103,7 @@ structure: \n${JSON.stringify(this.structure, null, 4)}
             } else {
                 result.push({
                     text: dir,
-                    link: `/${dir}/README.md`
+                    link: `/${dir}/`
                 })
             }
         }
