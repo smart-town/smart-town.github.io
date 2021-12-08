@@ -18,6 +18,7 @@ jobs:
               if: ${{ failure() }}
               env:
                 BUILD_FLAG: FLASE
+              run: echo "AI XI XI"
             - name: Use command set env
               run: CURRENT=`date +"%y_%m_%d %H:%M:%S"`
             #设置 node 环境
