@@ -7,15 +7,17 @@ jobs:
     my_first_job:
         name: Build_Site
         runs-on: ubuntu-18.04
+        env:
+            BUILD_FLAG: TRUE
         steps:
             - name: Checkout
               uses: actions/checkout@v2.4.0
             - name: Get commit message
               run: bash .github/workflows/test.sh $(git log -1 --pretty="%s")
-            # 设置 node 环境
-            #- name: Setup Node.js environment
-            #  uses: actions/setup-node@v2.5.0
-            #with:
-            #  node-version: '14'
-            #run: npm install
-            #run: npm run build
+            - name: Set BUILD_FLAG
+              if: ${{ failure() }}
+              run: 'Set BUILD_FLAG=FALSE'
+              env:
+                BUILD_FLAG: FLASE
+            #设置 node 环境
+            - run: echo BUILDFLAG:$BUILD_FLAG
