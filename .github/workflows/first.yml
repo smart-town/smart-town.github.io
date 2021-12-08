@@ -13,7 +13,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2.4.0
             - name: Get commit message
-              run: bash .github/workflows/test.sh $(git log -1 --pretty="%s")
+              run: BUILD_FLAG=`$(git log -1 --pretty="%s") | cut -d " " -f 1`
             - name: Set BUILD_FLAG
               if: ${{ failure() }}
               env:
