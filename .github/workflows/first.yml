@@ -8,8 +8,10 @@ jobs:
         name: Build_Site
         runs-on: ubuntu-18.04
         steps:
+            - name: Checkout
+              uses: actions/checkout@v2.4.0
             - name: Get commit message
-              run: git log -1 --pretty="%s"
+              run: bash .github/workflows/test.sh $(git log -1 --pretty="%s")
             # 设置 node 环境
             #- name: Setup Node.js environment
             #  uses: actions/setup-node@v2.5.0
