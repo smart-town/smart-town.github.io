@@ -14,10 +14,5 @@ jobs:
               uses: actions/checkout@v2.4.0
             - name: Get commit message
               run: env.BUILD_FLAG=`$(git log -1 --pretty="%s") | cut -d " " -f 1`
-            - name: Set BUILD_FLAG
-              if: ${{ `$(git log -1 --pretty="%s") | cut -d " " -f 1` ==  }}
-              env:
-                BUILD_FLAG: FLASE
-              run: echo "AI XI XI"
             #设置 node 环境
             - run: echo `date +"%y_%m_%d %H:%M:%S"` BUILDFLAG:$BUILD_FLAG
