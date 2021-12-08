@@ -17,7 +17,7 @@ module.exports = {
     themeConfig: {
         // logo: '/images/favicon.ico',
         navbar,
-        sidebar,
+        sidebar: sidebar,
         "@@@test@@@": "cherry",
     },
     bundlerConfig: {
