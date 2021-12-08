@@ -7,12 +7,13 @@ jobs:
     my_first_job:
         name: Build_Site
         runs-on: ubuntu-18.04
+        shell: bash
         env:
             BUILD_FLAG: TRUE
         steps:
             - name: Checkout
               uses: actions/checkout@v2.4.0
             - name: Get commit message
-              run: BUILD_FLAG=`git log -1 --pretty="%s" | cut -d " " -f 1`
+              run: BUILD_FLAG=$(git log -1 --pretty="%s" | cut -d " " -f 1)
             #设置 node 环境
-            - run: echo `date +"%y_%m_%d %H:%M:%S"` BUILDFLAG:$BUILD_FLAG
+            - run: echo $(date +"%y_%m_%d %H:%M:%S") BUILDFLAG: ${BUILD_FLAG}
