@@ -16,8 +16,9 @@ jobs:
               run: bash .github/workflows/test.sh $(git log -1 --pretty="%s")
             - name: Set BUILD_FLAG
               if: ${{ failure() }}
-              run: 'Set BUILD_FLAG=FALSE'
               env:
                 BUILD_FLAG: FLASE
+            - name: Use command set env
+              run: CURRENT=`date +"%y_%m_%d %H:%M:%S"`
             #设置 node 环境
-            - run: echo BUILDFLAG:$BUILD_FLAG
+            - run: echo $CURRENT BUILDFLAG:$BUILD_FLAG
