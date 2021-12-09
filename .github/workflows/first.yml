@@ -15,7 +15,7 @@ jobs:
             # 检查最新 git 提交的信息，输出结果，并将其设置为 outputs.needbuild 属性
             - name: Get commit message
               id: judge_build_ornot
-              run: echo "::set-output name=needbuild::$(git log -1 --pretty='%s' | cut -f1 -d ' ')"
+              run: echo "::set-output name=needbuild::git log -1 --pretty='%s' | cut -f1 -d ' '"
             - name: 🛑 not need build, end!
               continue-on-error: true
               if: steps.judge_buildornot.outputs.needbuild != env.BUILD_FLAG

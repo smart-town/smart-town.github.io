@@ -73,7 +73,7 @@ step 具体配置：
 ```yml
 - name: judge_buildornot
   id: step_judge
-  run: echo "::set-output name=needbuild::$(git log -1 --pretty='%s' | cut -f1 -d ' ')"
+  run: echo "::set-output name=needbuild::git log -1 --pretty='%s' | cut -f1 -d ' '"
 ```
 
 ### 判断所获取单词
