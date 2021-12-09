@@ -16,10 +16,12 @@ jobs:
               id: judge_build_ornot
               run: bash .github/workflows/test.sh $(git log -1 --pretty="%s")
             #设置 node 环境
-            - run: echo ${{steps.judge_build_ornot.outputs}}
+            - name: get steps.judge_build_ornot.outputs
+              run: echo "OUTPUTS is：" ${{steps.judge_build_ornot.outputs}}
               continue-on-error: true
             - name: test step context
               run: echo ${{toJSON(steps)}}
+              continue-on-error: true
             - name: Test github context
               run: echo ${{toJSON(github.event)}}
               continue-on-error: true
