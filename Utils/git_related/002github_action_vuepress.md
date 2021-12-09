@@ -72,7 +72,7 @@ step 具体配置：
 
 ```yml
 - name: judge_buildornot
-  id: judge_buildornot
+  id: step_judge
   run: echo "::set-output name=needbuild::$(git log -1 --pretty='%s' | cut -f1 -d ' ')"
 ```
 
@@ -88,4 +88,4 @@ step 具体配置：
     npm run build
 ```
 
-[👉这里是]()一份根据提交信息是否是以`:rocket:`开头来决定是否构建的简单工作流。
+[👉这里是](https://raw.githubusercontent.com/smart-town/smart-town.github.io/master/.github/workflows/first.yml)一份根据提交信息是否是以`:rocket:`开头来决定是否构建的简单工作流。

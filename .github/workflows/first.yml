@@ -19,7 +19,7 @@ jobs:
             - name: 🛑 not need build, end!
               continue-on-error: true
               if: steps.judge_buildornot.outputs.needbuild != env.BUILD_FLAG
-              run: echo "NOT NEED EXECUTE BUILD AND DEPLOY."
+              run: echo "CommitMsg begin with [${{steps.judge_buildornot.outputs.needbuild}}], not match:[${{env.BUILD_FLAG}}] so don't need to build and deploy."
             #设置 node 环境
             - name: Setup Node ENV
               if: steps.judge_buildornot.outputs.needbuild == env.BUILD_FLAG
