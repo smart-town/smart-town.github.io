@@ -16,4 +16,4 @@ jobs:
             - name: Get commit message
               run: BUILD_FLAG=$(git log -1 --pretty="%s" | cut -d " " -f 1)
             #设置 node 环境
-            - run: echo $(date +"%y_%m_%d %H:%M:%S") BUILDFLAG: ${BUILD_FLAG}
+            - run: echo $(date +"%y_%m_%d %H:%M:%S") BUILDFLAG IS ${BUILD_FLAG}
