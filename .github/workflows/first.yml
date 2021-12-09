@@ -12,24 +12,31 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v2.4.0
+            # 检查最新 git 提交的信息，输出结果，并将其设置为 outputs.needbuild 属性
             - name: Get commit message
               id: judge_build_ornot
               run: echo "::set-output name=needbuild::$(echo \"$(git log -1 --pretty='%s')\" \":rocket:\" | xargs bash .github/workflows/test.sh)"
-            #设置 node 环境
             - name: Test use outputs
               continue-on-error: true
               if: contains(steps.judge_build_ornot.outputs.needbuild, 'not need')
               run: echo "NOT NEED EXECUTE BUILD AND DEPLOY."
+            #设置 node 环境
             - name: Setup Node ENV
               if: contains(steps.judge_build_ornot.outputs.needbuild, 'Prepare')
               uses: actions/setup-node@v2
               with:
                 node-version: '14'
+                cache: 'npm'
             - name: Install Depencencies And Build
               if: contains(steps.judge_build_ornot.outputs.needbuild, 'Prepare')
               run: |
                 npm install
                 npm run build
-            - name: Test Lookup dist folder
+            - name: 👀 dist folder
               if: contains(steps.judge_build_ornot.outputs.needbuild, 'Prepare')
               run: ls dist
+            - name: Deploy to GitHub Pages
+              uses: JamesIves/github-pages-deploy-action@4.1.7
+              with:
+                branch: gh-pages
+                folder: dist
