@@ -27,5 +27,5 @@ jobs:
               continue-on-error: true
             - name: Test use outputs
               continue-on-error: true
-              if: contains(steps.judge_build_ornot.outputs.needbuild, "not need")
+              if: contains(steps.judge_build_ornot.outputs.needbuild, 'not need')
               run: echo "PERPARE EXECUTE."
