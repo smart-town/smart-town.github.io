@@ -16,7 +16,7 @@ jobs:
             - name: Get commit message
               id: judge_build_ornot
               run: echo "::set-output name=needbuild::$(git log -1 --pretty='%s' | cut -f1 -d ' ')"
-            - name: Test use outputs
+            - name: 🤔 not need build, end!
               continue-on-error: true
               if: steps.judge_buildornot.outputs.needbuild != env.BUILD_FLAG
               run: echo "NOT NEED EXECUTE BUILD AND DEPLOY."
@@ -37,6 +37,7 @@ jobs:
               run: ls dist
             - name: Deploy to GitHub Pages
               uses: JamesIves/github-pages-deploy-action@4.1.7
+              if: steps.judge_buildornot.outputs.needbuild == env.BUILD_FLAG
               with:
                 branch: gh-pages
                 folder: dist
