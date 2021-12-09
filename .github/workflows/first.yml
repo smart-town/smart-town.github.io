@@ -20,9 +20,9 @@ jobs:
               run: echo "OUTPUTS is：" ${{steps.judge_build_ornot.outputs}}
               continue-on-error: true
             - name: test step context
-              run: echo ${{toJSON(steps)}}
+              run: echo "${{toJSON(steps)}}"
               continue-on-error: true
             - name: Test github context
-              run: echo ${{toJSON(github.event)}}
+              run: echo "${{toJSON(github.event)}}"
               continue-on-error: true
             
