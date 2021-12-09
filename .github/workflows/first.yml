@@ -13,13 +13,14 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2.4.0
             - name: Get commit message
+              id: judge_build_ornot
               run: bash .github/workflows/test.sh $(git log -1 --pretty="%s")
-              continue-on-error: true
             #设置 node 环境
-            - run: echo $(date +"%y_%m_%d %H:%M:%S") BUILDFLAG IS
-              if: ${{ failure() }}
+            - run: echo ${{steps.judge_build_ornot.outputs}}
+              continues-on-error: true
             - name: test step context
-              run: echo ${{steps}}
+              run: echo ${{toJSON(steps)}}
             - name: Test github context
-              run: echo ${{github.event}}
+              run: echo ${{toJSON(github.event)}}
+              continues-on-error: true
             
