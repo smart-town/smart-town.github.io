@@ -55,10 +55,10 @@
 
 判断流程：抓取代码->取出最近一次提交->判断是否有需要构建的标志。
 
-假设约定当提交信息以`:rocket:`开头时，执行构建。主要需要解决两个问题：    
+假设约定当提交信息以`_deploy_`开头时，执行构建。主要需要解决两个问题：    
 
 1. 获取最新提交的首个单词
-2. 判断所获取单词是否为`:rocket:`
+2. 判断所获取单词是否为`_deploy_`
 
 ### 获取最新提交的首个单词
 
@@ -73,7 +73,7 @@ step 具体配置：
 ```yml
 - name: judge_buildornot
   id: step_judge
-  run: echo "::set-output name=needbuild::git log -1 --pretty='%s' | cut -f1 -d ' '"
+  run: echo "::set-output name=needbuild::$(git log -1 --pretty='%s' | cut -f1 -d ' ')"
 ```
 
 ### 判断所获取单词
@@ -82,7 +82,7 @@ step 具体配置：
 
 ```yml
 - name: build
-  if: steps.judge_buildornot.outputs.needbuild == ':rocket:'
+  if: steps.judge_buildornot.outputs.needbuild == '_deploy_'
   run: |
     npm install
     npm run build
