@@ -6,8 +6,7 @@ on:
 jobs:
     my_first_job:
         name: Build_Site
-        runs-on: ubuntu-18.04
-        shell: bash
+        runs-on: ubuntu-latest
         env:
             BUILD_FLAG: TRUE
         steps:
