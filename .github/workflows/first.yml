@@ -16,16 +16,20 @@ jobs:
               id: judge_build_ornot
               run: echo "::set-output name=needbuild::$(bash .github/workflows/test.sh $(git log -1 --pretty='%s'))"
             #设置 node 环境
-            - name: get steps.judge_build_ornot.outputs
-              run: echo "OUTPUTS is：" "${{toJSON(steps.judge_build_ornot.outputs)}}"
-              continue-on-error: true
-            - name: test step context
-              run: echo "${{toJSON(steps)}}"
-              continue-on-error: true
-            - name: Test github context
-              run: echo "${{toJSON(github.event)}}"
-              continue-on-error: true
             - name: Test use outputs
               continue-on-error: true
               if: contains(steps.judge_build_ornot.outputs.needbuild, 'not need')
-              run: echo "PERPARE EXECUTE."
+              run: echo "NOT NEED EXECUTE BUILD AND DEPLOY."
+            - name: Setup Node ENV
+              if: contains(steps.judge_build_ornot.outputs.needbuild, 'Prepare')
+              uses: actions/setup-node@v2
+                with:
+                    node-version: '14'
+            - name: Install Depencencies And Build
+              if: contains(steps.judge_build_ornot.outputs.needbuild, 'Prepare')
+              run: |
+                npm install
+                npm run build
+            - name: Test Lookup dist folder
+              if: contains(steps.judge_build_ornot.outputs.needbuild, 'Prepare')
+              run: ls dist
