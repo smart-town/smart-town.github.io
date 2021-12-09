@@ -1,1 +1,0 @@
-const t={key:"v-051cdca6",path:"/os/linux_orders/",title:"\u5E38\u7528\u547D\u4EE4",lang:"zh-Hans",frontmatter:{},excerpt:"",headers:[],filePathRelative:"os/linux_orders/README.md",git:{updatedTime:1638411467e3,contributors:[{name:"smalltown",email:"luhh14@foxmail.com",commits:1}]}};export{t as data};

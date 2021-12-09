@@ -1,1 +1,0 @@
-const t={key:"v-568d3b89",path:"/JavaScript/",title:"\u6982\u8FF0",lang:"zh-Hans",frontmatter:{},excerpt:"",headers:[],filePathRelative:"JavaScript/README.md",git:{updatedTime:1638404667e3,contributors:[{name:"smalltown",email:"luhh14@foxmail.com",commits:1}]}};export{t as data};
