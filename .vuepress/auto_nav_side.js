@@ -91,9 +91,9 @@ class AutoNavSide {
         for (let dir of Object.keys(this.structure)) {
             let subDir = this.structure[dir]
             if (subDir.length > 0) {
-                let  children = subDir.map(sub => `/${dir}/${sub}/`) 
+                let  children = subDir.map(sub => {return {text: sub, link: `/${dir}/${sub}/`, activeMatch: `/${dir}/${sub}/[^/]*$`}}) 
                 if (this.fileInfo[dir] && this.fileInfo[dir].length) {
-                    children.unshift(`/${dir}/`)
+                    children.unshift({text: '概述', link: `/${dir}/`, activeMatch: `/${dir}/[^/]*$`})
                 }
                 result.push({
                     text: dir,
@@ -134,9 +134,10 @@ class AutoNavSide {
 
 if (process.env.TEST) {
     let test = new AutoNavSide()
-    console.log(test.genNavbarGroup())
-    console.log(test.genSidebarGroup())
+    console.log(JSON.stringify(test.genNavbarGroup(), null, 2))
+    // console.log(test.genSidebarGroup())
 }
+
 module.exports = {
     AutoNavSide,
 }
