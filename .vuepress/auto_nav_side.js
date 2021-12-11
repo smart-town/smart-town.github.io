@@ -135,7 +135,7 @@ class AutoNavSide {
 if (process.env.TEST) {
     let test = new AutoNavSide()
     console.log(JSON.stringify(test.genNavbarGroup(), null, 2))
-    // console.log(test.genSidebarGroup())
+    console.log(test.genSidebarGroup())
 }
 
 module.exports = {
