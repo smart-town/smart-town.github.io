@@ -1,6 +1,6 @@
 const path = require("path")
 const fs = require("fs")
-const IGNORE_DIR_DEFAULT = [".github", ".vuepress", "dist", "node_modules", "public", ".git"]
+const IGNORE_DIR_DEFAULT = [".github", ".vuepress", "dist", "node_modules", "public", ".git", ".vscode"]
 
 /***
  * 
