@@ -1,1 +1,0 @@
-const e={key:"v-422f07cc",path:"/os/linux_orders/003find.html",title:"\u67E5\u627E\u6587\u4EF6",lang:"zh-Hans",frontmatter:{},excerpt:"",headers:[{level:2,title:"\u5E38\u7528\u793A\u4F8B",slug:"\u5E38\u7528\u793A\u4F8B",children:[]}],filePathRelative:"os/linux_orders/003find.md",git:{updatedTime:null,contributors:[]}};export{e as data};

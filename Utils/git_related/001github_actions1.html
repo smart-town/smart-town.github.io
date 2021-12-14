@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="generator" content="VuePress 2.0.0-beta.27">
     <link rel="icon" href="/images/favicon.ico"><title>GitHubAction概述 | 小城</title><meta name="description" content="notes">
-    <link rel="modulepreload" href="/assets/app.2f880364.js"><link rel="modulepreload" href="/assets/001github_actions1.html.7d2ba28f.js"><link rel="modulepreload" href="/assets/plugin-vue_export-helper.21dcd24c.js"><link rel="modulepreload" href="/assets/001github_actions1.html.0d9ed4f7.js">
+    <link rel="modulepreload" href="/assets/app.678c97f7.js"><link rel="modulepreload" href="/assets/001github_actions1.html.7bbf3a79.js"><link rel="modulepreload" href="/assets/plugin-vue_export-helper.21dcd24c.js"><link rel="modulepreload" href="/assets/001github_actions1.html.0d9ed4f7.js">
     <link rel="stylesheet" href="/assets/style.59380eac.css">
   </head>
   <body>
@@ -35,6 +35,6 @@
 </code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>注意，以上的设置<code>outputs</code>方式其实是<strong>工作流命令</strong>(Workflow commands)</p><h3 id="使用-if" tabindex="-1"><a class="header-anchor" href="#使用-if" aria-hidden="true">#</a> 使用 if</h3><p>在 step 中使用 if 来判断条件是否满足，以此决定是否执行当前步骤。</p><p>如使用<code>step.if</code>判断该上述输出有无需要的内容，比如是否包含关键字<code>:rocket:</code></p><div class="language-yaml ext-yml line-numbers-mode"><pre class="language-yaml"><code><span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> test if
   <span class="token key atrule">if</span><span class="token punctuation">:</span> contains(steps.set_out1_step.outputs.commit == &#39;<span class="token punctuation">:</span>rocket<span class="token punctuation">:</span>&#39;)
 </code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><!--]--></div><footer class="page-meta"><!----><div class="meta-item last-updated"><span class="meta-item-label">Last Updated: </span><span class="meta-item-info">2021/12/10 下午5:06:34</span></div><div class="meta-item contributors"><span class="meta-item-label">Contributors: </span><span class="meta-item-info"><!--[--><!--[--><span class="contributor" title="email: luhh14@foxmail.com">smalltown</span><!----><!--]--><!--]--></span></div></footer><nav class="page-nav"><p class="inner"><span class="prev"> ← <a href="/Utils/git_related/" class="nav-link router-link-active" aria-label="git及相关工具"><!--[--><!--]--> git及相关工具 <!--[--><!--]--></a></span><span class="next"><a href="/Utils/git_related/002github_action_vuepress.html" class="nav-link" aria-label="GithubActions和vuepress"><!--[--><!--]--> GithubActions和vuepress <!--[--><!--]--></a> → </span></p></nav><!--[--><!--]--></main><!--]--></div><!----><!--]--></div>
-    <script type="module" src="/assets/app.2f880364.js" defer></script>
+    <script type="module" src="/assets/app.678c97f7.js" defer></script>
   </body>
 </html>
