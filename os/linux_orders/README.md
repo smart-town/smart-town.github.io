@@ -39,7 +39,7 @@ echo "one two three" | xargs touch
 执行脚本时，经常需要提供形式类似的参数。bash 使我们可以轻松实现这一操作
 
 - 通配符，可以使用`?`和`*`分别匹配一个或任意个字符。例如，对于`foo, foo1, foo2, foo10, bar`，`rm foo?`会删除`foo1, foo2`，而`rm foo*`则会删除除了`bar`之外的其余文件
-- 花括号`{}`，当你有一系列指令，其中包含一段公共子程序时，可以用花括号展开这些命令，这在批量移动或转换文件时非常方便
+- 花括号`{}`，当你有一系列指令，其中包含一段公共子程序时，可以用花括号展开这些命令，这在批量移动或转换文件时非常方便。注意`{}`中的内容不要加空格，否则会被认为是多个参数导致出错。
     ```shell
     convert image.{png,jpg} # 会展开为 convert image.png image.jpg
     cp /path/to/{foo,bar,baz}.sh /newpath # 展开为 cp /path/to/foo.sh /path/to/bar.sh /path/to/baz.sh /newpath
