@@ -1,0 +1,1 @@
+const e={key:"v-2b35a8ab",path:"/os/linux_orders/004jq.html",title:"jq",lang:"zh-Hans",frontmatter:{},excerpt:"",headers:[{level:2,title:"\u4F7F\u7528",slug:"\u4F7F\u7528",children:[]}],filePathRelative:"os/linux_orders/004jq.md",git:{updatedTime:1641300044e3,contributors:[{name:"smalltown",email:"luhh14@foxmail.com",commits:1}]}};export{e as data};

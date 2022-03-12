@@ -1,0 +1,1 @@
+const t={key:"v-8d9f97ca",path:"/Utils/front_related.html",title:"\u524D\u7AEF\u5DE5\u5177",lang:"zh-Hans",frontmatter:{},excerpt:"",headers:[{level:2,title:"Node \u5DE5\u5177",slug:"node-\u5DE5\u5177",children:[]}],filePathRelative:"Utils/front_related.md",git:{updatedTime:1641300044e3,contributors:[{name:"smalltown",email:"luhh14@foxmail.com",commits:1}]}};export{t as data};
