@@ -9,3 +9,18 @@
 
 - 启动脚本放在`/etc/profile.d`下,系统启动后会自动执行该目录下的所有脚本
 - 原文其他几个未实际用过,暂时不予记录
+
+## 端口检测
+
+### nc
+
+测试其他机器端口状况，或传个文件也行。
+
+语法：`nc [options] hostname port[s] [ports] ...`
+
+- 端口扫描：`nc -zvn ip 21-25` 运行在 TCP 或 UDP 模式，默认 TCP，使用`-u`调整为 UDP。
+    - `z` 参数使用 0 IO，连接成功后立即关闭，不进行数据交换
+    - `v` 参数：详细输出
+    - `n` 参数：不使用 DNS 反向查询 IP 域名
+- Server: 服务端：`nc -l port`; 客户端：`nc ip port`
+- 文件传输：服务端：`nc -l port < test.txt`; 客户端：`nc -n ip port > test.txt`
