@@ -44,7 +44,7 @@ var authenticate = compose(logIn, toUser)
 ### 一个函数式的 flickr
 
 下面以一种声明式的、可组合的方式创建一个应用。暂时还是会使用一点副作用，但是会将副作用降到最低，让它们与纯函数式代码分离开来。
-```
+```js
 // flickr.js
 requirejs.config({
     paths: {
@@ -72,6 +72,34 @@ require(['ramda', 'jquery'],
         }
         var app = _.compose(Impure.getJSON(trace("response")), url)
         app("cats")
+
+        var meidaUrl = _.compose(_.prop('m'), _.prop('media'))
+        var srcs = _.compose(_.map(mediaUrl), _.prop('items'))
+        var renderImags = _.compose(Impure.setHtml('body'), srcs)
+        var app = _.compse(Impure.getJSON(renderImages), url)
+
+        var img = function (url) {
+            return $('<img/>', {src: url})
+        }
+        var images = _.compose(_.map(img), srcs)
+        var renderImages = _.compose(Impure.setHtml('body'), images)
+        var app = _.compose(Impure.getJSON(renderImages), url)
     }
 )
+```
+
+### 有原则的重构
+
+上面的代码是有优化空间的。我们获取了`url map`一次，将这些`url`变为`img`又`map`了一次。关于`map`和组合是有定律的：`var law = compose(map(f), map(g)) == map(compose(f, g))`
+
+因此可以进行以下优化：
+```js
+var mediaUrl = _.compose(_.prop('m'), _.prop('media'))
+var srcs = _.compose(_.map(mediaUrl), _.prop('items'))
+var images = _.compse(_.map(img), srcs)
+
+// 优化为：
+var mediaUrl = _.compose(_.prop('m'), _.prop('media'))
+var images = _.compose(_.map(img), _.map(mediaUrl), _.prop('items'))
+
 ```
