@@ -35,3 +35,7 @@ pwd #D:/code/LabOfST
 
 针对个人配置文件，可以方便地更改一处，到处生效，免得复制。clone 代码后，直接原地更改即可。
 New-Item -Path C:\LinkDir -ItemType SymbolicLink -Value F:\RealDir
+
+## Select-Object
+
+
